@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Se crean las variables globales */
+:root {
+	/* Colores */
+	--color-boda-black: #13141b;
+	--color-boda-blue: #1b2857;
+	--color-boda-red: #570d18;
+	--color-boda-green: #5e7456;
+	--color-boda-white: #f9faf5;
+}
+
+@theme {
+    --color-boda-oscuro-base: var(--color-boda-black);
+    --color-boda-azul-base: var(--color-boda-blue);
+	--color-boda-rojo-base: var(--color-boda-red);
+	--color-boda-verde-base: var(--color-boda-green);
+	--color-boda-blanco-base: var(--color-boda-white);
+
+	--font-secondary-100: 'PlaywriteNo-100', sans-serif;
+	--font-secondary-200: 'PlaywriteNo-200', sans-serif;
+	--font-secondary-300: 'PlaywriteNo-300', sans-serif;
+	--font-secondary-400: 'PlaywriteNo-400', sans-serif;
+}
+
+/* Se importa una fuente externa o descargada */
+@font-face {
+  font-family: 'PlaywriteNo-100';
+  src: url('/Playwrite_NO/static/PlaywriteNO-ExtraLight.ttf') format('trueType');
+  font-weight: 100;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlaywriteNo-200';
+  src: url('/Playwrite_NO/static/PlaywriteNO-Light.ttf') format('trueType');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlaywriteNo-300';
+  src: url('/Playwrite_NO/static/PlaywriteNO-Regular.ttf') format('trueType');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlaywriteNo-400';
+  src: url('/Playwrite_NO/static/PlaywriteNO-Thin.ttf') format('trueType');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
