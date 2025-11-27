@@ -1,0 +1,96 @@
+---
+// src/components/CuentaRegresiva.astro
+---
+
+<section class="w-full py-16 md:py-24 bg-boda-azul-base text-boda-blanco-base flex flex-col items-center justify-center overflow-hidden relative">
+    
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div class="absolute top-10 left-10 w-32 h-32 rounded-full border border-boda-blanco-base"></div>
+        <div class="absolute bottom-10 right-10 w-48 h-48 rounded-full border border-boda-blanco-base"></div>
+    </div>
+
+    <div class="relative z-10 text-center px-4">
+        <h2 class="text-3xl md:text-4xl font-secondary-300 mb-12 tracking-widest uppercase">
+            Solo faltan
+        </h2>
+
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center" id="contador">
+            
+            <div class="flex flex-col items-center">
+                <span class="text-5xl md:text-7xl font-secondary-300 leading-none" id="dias">00</span>
+                <span class="text-sm md:text-base font-secondary-100 uppercase tracking-widest mt-2">Días</span>
+            </div>
+
+            <div class="text-4xl md:text-6xl font-secondary-100 opacity-50 hidden md:block">:</div>
+
+            <div class="flex flex-col items-center">
+                <span class="text-5xl md:text-7xl font-secondary-300 leading-none" id="horas">00</span>
+                <span class="text-sm md:text-base font-secondary-100 uppercase tracking-widest mt-2">Horas</span>
+            </div>
+
+            <div class="text-4xl md:text-6xl font-secondary-100 opacity-50 hidden md:block">:</div>
+
+            <div class="flex flex-col items-center">
+                <span class="text-5xl md:text-7xl font-secondary-300 leading-none" id="minutos">00</span>
+                <span class="text-sm md:text-base font-secondary-100 uppercase tracking-widest mt-2">Minutos</span>
+            </div>
+
+            <div class="text-4xl md:text-6xl font-secondary-100 opacity-50 hidden md:block">:</div>
+
+            <div class="flex flex-col items-center">
+                <span class="text-5xl md:text-7xl font-secondary-300 leading-none" id="segundos">00</span>
+                <span class="text-sm md:text-base font-secondary-100 uppercase tracking-widest mt-2">Segundos</span>
+            </div>
+        </div>
+
+        <p class="mt-10 text-lg font-secondary-200 italic opacity-80" id="mensaje-final">
+            Para el gran día
+        </p>
+    </div>
+</section>
+
+<script is:inline >
+    // Configuración de la fecha de la boda: 20 Dic 2025
+    // Nota: 'T15:00:00' es la hora (3 PM). Ajusta según la hora de la ceremonia.
+    const fechaBoda = new Date('2025-12-20T15:00:00').getTime();
+
+    function actualizarContador() {
+        const ahora = new Date().getTime();
+        const distancia = fechaBoda - ahora;
+
+        // Cálculos de tiempo
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        // Actualizar el DOM solo si los elementos existen
+        const elDias = document.getElementById('dias');
+        const elHoras = document.getElementById('horas');
+        const elMinutos = document.getElementById('minutos');
+        const elSegundos = document.getElementById('segundos');
+
+        if (elDias && elHoras && elMinutos && elSegundos) {
+            // Si la fecha ya pasó
+            if (distancia < 0) {
+                document.getElementById('contador').innerHTML = '<div class="text-4xl md:text-5xl font-secondary-300">¡Hoy es el gran día!</div>';
+                document.getElementById('mensaje-final').style.display = 'none';
+                return;
+            }
+
+            // Función auxiliar para agregar ceros a la izquierda (ej: 05 en lugar de 5)
+            const format = (num) => num < 10 ? `0${num}` : num;
+
+            elDias.innerText = format(dias);
+            elHoras.innerText = format(horas);
+            elMinutos.innerText = format(minutos);
+            elSegundos.innerText = format(segundos);
+        }
+    }
+
+    // Actualizar cada segundo
+    setInterval(actualizarContador, 1000);
+    
+    // Ejecutar inmediatamente para evitar retardo de 1 segundo al cargar
+    actualizarContador();
+</script>
