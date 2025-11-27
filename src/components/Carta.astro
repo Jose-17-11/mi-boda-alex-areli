@@ -88,39 +88,48 @@
     const selloInner = document.getElementById('sello-inner');
     
     // Solapas
-    const solapaT = document.getElementById('solapa-t'); // Top
-    const solapaB = document.getElementById('solapa-b'); // Bottom
-    const solapaL = document.getElementById('solapa-l'); // Left
-    const solapaR = document.getElementById('solapa-r'); // Right
+    const solapaT = document.getElementById('solapa-t'); 
+    const solapaB = document.getElementById('solapa-b'); 
+    const solapaL = document.getElementById('solapa-l'); 
+    const solapaR = document.getElementById('solapa-r'); 
     
     const interior = document.getElementById('interior-sobre');
+
+    // --- CONFIGURACIÓN DE AUDIO ---
+    // Astro sirve la carpeta public en la raíz, por eso es /cancion_fondo.mp3
+    const audioFondo = new Audio('/cancion_fondo.mp3');
+    audioFondo.loop = true; // Para que se repita si acaba
+    audioFondo.volume = 0.6; // Volumen al 60% para no asustar (opcional)
 
     if (sello && solapaT && solapaB && solapaL && solapaR) {
         sello.addEventListener('click', () => {
             
-            // 1. Detener latido y desaparecer sello
-            selloInner.classList.add('stop-animation'); // Detiene el latido
+            // 1. REPRODUCIR MÚSICA
+            // Los navegadores permiten reproducir audio si hay interacción del usuario (click)
+            audioFondo.play().catch(error => {
+                console.log("No se pudo reproducir el audio automáticamente:", error);
+            });
+
+            // 2. Detener latido y desaparecer sello
+            selloInner.classList.add('stop-animation'); 
             sello.classList.add('opacity-0', 'scale-0', 'pointer-events-none', 'transition-all', 'duration-500');
 
-            // 2. Abrir todas las solapas (delay breve para que se vea irse el sello)
+            // 3. Abrir todas las solapas
             setTimeout(() => {
-                // Arriba: Gira hacia atrás (-180 en X)
+                // Arriba
                 solapaT.classList.add('-rotate-x-180'); 
-                
-                // Abajo: Gira hacia abajo (180 en X)
+                // Abajo
                 solapaB.classList.add('rotate-x-180');
-                
-                // Izquierda: Gira hacia la izquierda (-180 en Y)
+                // Izquierda
                 solapaL.classList.add('-rotate-y-180');
-                
-                // Derecha: Gira hacia la derecha (180 en Y)
+                // Derecha
                 solapaR.classList.add('rotate-y-180');
 
                 // Mostrar contenido
                 if(interior) interior.classList.remove('opacity-0');
             }, 200);
 
-            // 3. Scroll hacia abajo
+            // 4. Scroll hacia abajo
             setTimeout(() => {
                 const siguienteSeccion = document.getElementById('seccion-padres');
                 if(siguienteSeccion) {
