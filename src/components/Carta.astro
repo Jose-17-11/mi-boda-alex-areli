@@ -1,14 +1,72 @@
-<div class="w-full h-64 flex justify-center items-center " >
-	<div class="w-44 h-2/5 bg-boda-verde-base relative" >
-		<div class="w-0 h-0 
-			border-l-[87px] border-l-transparent 
-			border-r-[90px] border-r-transparent 
-			border-t-[68px] border-t-[#44553e]">
-		</div>
-		<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-boda-azul-base rounded-full w-8 h-8 hover:scale-110 cursor-pointer transition-all" >
-			<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-boda-blanco-base rounded-full w-7 h-7 border-[1px] border-boda-azul-base flex justify-center items-center" >
-				<p class="text-[8px] text-boda-rojo-base" >A y A </p>
-			</div>
-		</div>
-	</div>
+---
+// src/components/Carta.astro
+---
+
+<div class="w-full h-64 flex justify-center items-center perspective-[1000px]" >
+    
+    <div class="w-44 h-28 bg-boda-verde-base relative shadow-2xl rounded-sm">
+        
+        <div 
+            id="solapa"
+            class="absolute top-0 left-0 w-0 h-0 
+            border-l-[88px] border-l-transparent 
+            border-r-[88px] border-r-transparent 
+            border-t-[70px] border-t-[#44553e]
+            origin-top transition-transform duration-1000 ease-in-out z-20"
+        >
+        </div>
+
+        <div 
+            id="sello"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                   bg-boda-azul-base rounded-full w-8 h-8 
+                   hover:scale-110 cursor-pointer transition-all duration-500 z-30 shadow-md" 
+        >
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-boda-blanco-base rounded-full w-7 h-7 border-[1px] border-boda-azul-base flex justify-center items-center pointer-events-none" >
+                <p class="text-[8px] text-boda-rojo-base font-bold">A & A</p>
+            </div>
+        </div>
+
+        <div class="absolute inset-0 flex justify-center items-end pb-2 z-10 opacity-0 transition-opacity duration-1000" id="interior-sobre">
+            <span class="text-[10px] text-boda-blanco-base/50 font-secondary-100 uppercase tracking-widest">Invitación</span>
+        </div>
+
+    </div>
 </div>
+
+<script is:inline>
+    const sello = document.getElementById('sello');
+    const solapa = document.getElementById('solapa');
+    const interior = document.getElementById('interior-sobre');
+
+    if (sello && solapa) {
+        sello.addEventListener('click', () => {
+            
+            // PASO 1: Desaparecer el sello
+            sello.classList.add('opacity-0', 'scale-0', 'pointer-events-none');
+
+            // PASO 2: Abrir el sobre (esperamos 300ms a que el sello empiece a irse)
+            setTimeout(() => {
+                // rotate-x-180 invierte el triangulo hacia arriba
+                solapa.classList.add('-rotate-x-180');
+                // Mostramos un poco el contenido interior
+                if(interior) interior.classList.remove('opacity-0');
+            }, 300);
+
+            // PASO 3: Dirigir a la siguiente sección (esperamos a que termine la animación)
+            setTimeout(() => {
+                // Buscamos la siguiente sección por ID o simplemente hacemos scroll
+                // Opción A: Scroll suave hacia abajo una pantalla completa
+                window.scrollBy({
+                    top: window.innerHeight, 
+                    behavior: 'smooth'
+                });
+
+                // Opción B (Más precisa): Si tienes un ID en la siguiente sección:
+                // const siguienteSeccion = document.getElementById('seccion-padres');
+                // if(siguienteSeccion) siguienteSeccion.scrollIntoView({ behavior: 'smooth' });
+
+            }, 1200); // 1.2 segundos después del click
+        });
+    }
+</script>
