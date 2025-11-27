@@ -4,16 +4,18 @@
 
 <section class="w-full py-16 md:py-24 bg-boda-azul-base text-boda-blanco-base flex flex-col items-center justify-center overflow-hidden relative">
     
+    <!-- Decoración de fondo -->
     <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
         <div class="absolute top-10 left-10 w-32 h-32 rounded-full border border-boda-blanco-base"></div>
         <div class="absolute bottom-10 right-10 w-48 h-48 rounded-full border border-boda-blanco-base"></div>
     </div>
 
-    <div class="relative z-10 text-center px-4">
+    <div class="relative z-10 text-center px-4 w-full max-w-5xl">
         <h2 class="text-3xl md:text-4xl font-secondary-300 mb-12 tracking-widest uppercase">
             Solo faltan
         </h2>
 
+        <!-- CONTADOR -->
         <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center" id="contador">
             
             <div class="flex flex-col items-center">
@@ -43,54 +45,96 @@
             </div>
         </div>
 
-        <p class="mt-10 text-lg font-secondary-200 italic opacity-80" id="mensaje-final">
+        <p class="mt-8 text-lg font-secondary-200 italic opacity-80 mb-12" id="mensaje-final">
             Para el gran día
         </p>
+
+        <!-- SECCIÓN DE BOTONES REDONDOS -->
+        <div class="flex flex-wrap justify-center items-start gap-8 md:gap-16 mt-12 border-t border-boda-blanco-base/20 pt-10">
+            
+            <!-- BOTÓN 1: UBICACIÓN (MAPS) -->
+            <!-- Reemplaza el href con el link real de tu salón en Google Maps -->
+            <a href="https://maps.app.goo.gl/DahgVwJvpqszb95h8" target="_blank" rel="noopener noreferrer" class="group flex flex-col items-center gap-3 w-32">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-boda-blanco-base text-boda-azul-base rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:bg-boda-rojo-base group-hover:text-boda-blanco-base cursor-pointer">
+                    <!-- Icono Mapa (SVG) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                        <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-secondary-300 tracking-widest uppercase group-hover:text-boda-rojo-base transition-colors">Ceremonia</span>
+                    <!-- Nombre del salón aquí -->
+                    <span class="text-xs font-secondary-100 opacity-80 leading-tight mt-1">Salón "El Evento"</span>
+                </div>
+            </a>
+
+            <!-- BOTÓN 2: REGALOS (PLACEHOLDER) -->
+            <!-- Puedes descomentar el href cuando tengas el link -->
+            <div class="group flex flex-col items-center gap-3 w-32 opacity-50 hover:opacity-100 transition-opacity">
+                <!-- <a href="#" ... > -->
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-boda-blanco-base/10 border border-boda-blanco-base text-boda-blanco-base rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-boda-blanco-base group-hover:text-boda-azul-base cursor-not-allowed group-hover:cursor-pointer">
+                    <!-- Icono Regalo (SVG) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 md:w-9 md:h-9">
+                        <path d="M20 4h-4.326c.466-.632.736-1.378.736-2.203 0-2.328-2.618-2.585-4.41-1.797-1.792-.788-4.41-.531-4.41 1.797 0 .825.27 1.571.736 2.203h-4.326c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h1v12c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-12h1c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1zm-8-1.556c1.176 0 2.062.617 2.062 1.353 0 .759-.97 1.203-2.062 1.203s-2.062-.444-2.062-1.203c0-.736.886-1.353 2.062-1.353zm-6 3.556h5v3h-5v-3zm0 15v-10h5v10h-5zm12 0h-5v-10h5v10zm0-12h-5v-3h5v3z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm font-secondary-300 tracking-widest uppercase">Mesa de Regalos</span>
+                    <span class="text-xs font-secondary-100 opacity-80 mt-1">Próximamente</span>
+                </div>
+                <!-- </a> -->
+            </div>
+
+            <!-- BOTÓN 3: OTRO (DRESS CODE / HOTELES) (PLACEHOLDER) -->
+            <div class="group flex flex-col items-center gap-3 w-32 opacity-50 hover:opacity-100 transition-opacity">
+                <div class="w-16 h-16 md:w-20 md:h-20 bg-boda-blanco-base/10 border border-boda-blanco-base text-boda-blanco-base rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-boda-blanco-base group-hover:text-boda-azul-base cursor-not-allowed group-hover:cursor-pointer">
+                    <!-- Icono Info/Vestimenta (SVG) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+                         <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                     <span class="text-sm font-secondary-300 tracking-widest uppercase">Info</span>
+                     <span class="text-xs font-secondary-100 opacity-80 mt-1">Próximamente</span>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 </section>
 
 <script is:inline >
     // Configuración de la fecha de la boda: 20 Dic 2025
-    // Nota: 'T15:00:00' es la hora (3 PM). Ajusta según la hora de la ceremonia.
     const fechaBoda = new Date('2025-12-20T15:00:00').getTime();
 
     function actualizarContador() {
         const ahora = new Date().getTime();
         const distancia = fechaBoda - ahora;
 
-        // Cálculos de tiempo
         const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
         const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
         const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-        // Actualizar el DOM solo si los elementos existen
         const elDias = document.getElementById('dias');
         const elHoras = document.getElementById('horas');
         const elMinutos = document.getElementById('minutos');
         const elSegundos = document.getElementById('segundos');
 
         if (elDias && elHoras && elMinutos && elSegundos) {
-            // Si la fecha ya pasó
             if (distancia < 0) {
                 document.getElementById('contador').innerHTML = '<div class="text-4xl md:text-5xl font-secondary-300">¡Hoy es el gran día!</div>';
                 document.getElementById('mensaje-final').style.display = 'none';
                 return;
             }
-
-            // Función auxiliar para agregar ceros a la izquierda (ej: 05 en lugar de 5)
             const format = (num) => num < 10 ? `0${num}` : num;
-
             elDias.innerText = format(dias);
             elHoras.innerText = format(horas);
             elMinutos.innerText = format(minutos);
             elSegundos.innerText = format(segundos);
         }
     }
-
-    // Actualizar cada segundo
     setInterval(actualizarContador, 1000);
-    
-    // Ejecutar inmediatamente para evitar retardo de 1 segundo al cargar
     actualizarContador();
 </script>
