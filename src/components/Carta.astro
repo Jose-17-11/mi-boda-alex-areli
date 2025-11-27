@@ -1,10 +1,10 @@
 ---
 // src/components/Carta.astro
-// ... (El HTML y CSS sigue igual, solo cambiamos el <script> al final)
+// ... El HTML y CSS del sobre SE MANTIENEN IGUALES ...
 ---
 
 <style>
-    /* ... tus estilos previos ... */
+    /* ... Tus estilos anteriores ... */
     @keyframes latido {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
@@ -38,7 +38,6 @@
 </div>
 
 <script is:inline>
-    // Referencias al DOM
     const sello = document.getElementById('sello');
     const selloInner = document.getElementById('sello-inner');
     const solapaT = document.getElementById('solapa-t'); 
@@ -47,12 +46,6 @@
     const solapaR = document.getElementById('solapa-r'); 
     const interior = document.getElementById('interior-sobre');
 
-    // Configuración de Audio
-    const audioFondo = new Audio('/cancion_fondo.mp3');
-    audioFondo.loop = true; 
-    audioFondo.volume = 0.6;
-
-    // Helper para hacer scroll suave
     const scrollA = (id) => {
         const elemento = document.getElementById(id);
         if (elemento) {
@@ -63,12 +56,18 @@
     if (sello && solapaT && solapaB && solapaL && solapaR) {
         sello.addEventListener('click', () => {
             
-            // 1. INICIAR AUDIO Y ANIMACIÓN
-            audioFondo.play().catch(e => console.log("Audio autoplay bloqueado:", e));
+            // 1. INICIAR AUDIO GLOBAL (Definido en index.astro)
+            if (window.bodaAudio) {
+                window.bodaAudio.play().then(() => {
+                    // Avisar al index.astro que la música arrancó para poner el botón en Pause
+                    window.dispatchEvent(new Event('musicaIniciada'));
+                }).catch(e => console.log("Audio autoplay bloqueado:", e));
+            }
+
             selloInner.classList.add('stop-animation'); 
             sello.classList.add('opacity-0', 'scale-0', 'pointer-events-none', 'transition-all', 'duration-500');
 
-            // 2. ABRIR EL SOBRE (200ms)
+            // 2. ABRIR EL SOBRE
             setTimeout(() => {
                 solapaT.classList.add('-rotate-x-180'); 
                 solapaB.classList.add('rotate-x-180');
@@ -77,24 +76,30 @@
                 if(interior) interior.classList.remove('opacity-0');
             }, 200);
 
-            // --- SECUENCIA DE SCROLL AUTOMÁTICO ---
-
-            // PASO A: Ir a Padres (1.2 segundos después del click)
+            // 3. SECUENCIA DE SCROLL ACTUALIZADA
+            
+            // PASO A: Ir a la nueva sección de NOVIOS/PLAYER
             setTimeout(() => {
-                scrollA('seccion-padres');
+                scrollA('seccion-novios');
 
-                // PASO B: Ir a Regalos (5 segundos después de llegar a Padres)
+                // PASO B: Ir a Padres (7 segundos para ver foto y probar el botón)
                 setTimeout(() => {
-                    scrollA('seccion-regalos');
+                    scrollA('seccion-padres');
 
-                    // PASO C: Ir al Final/Cuenta Regresiva (5 segundos después de Regalos)
+                    // PASO C: Ir a Regalos (5 segundos)
                     setTimeout(() => {
-                        scrollA('seccion-final');
-                    }, 5000); // 5000ms de lectura en Regalos
+                        scrollA('seccion-regalos');
 
-                }, 5000); // 5000ms de lectura en Padres
+                        // PASO D: Ir al Final (5 segundos)
+                        setTimeout(() => {
+                            scrollA('seccion-final');
+                        }, 5000); 
 
-            }, 1200); // 1200ms para abrir el sobre
+                    }, 5000); 
+
+                }, 7000); // Damos 7 segundos a la sección de novios para que aprecien la foto y la frase
+
+            }, 1200); 
         });
     }
 </script>
