@@ -1,12 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import fondoFlores from '@assets/fondos-para-invitaciones-de-bodas-con-flroes-2.png'; // Asegúrate de que esta ruta sea correcta
-
+import fondoFlores from '@assets/fondos-para-invitaciones-de-bodas-con-flroes-2.png';
 import Layout from '../layouts/Layout.astro';
 import Carta from '@components/Carta.astro';
 import CuentaRegresiva from '@components/CuentaRegresiva.astro'; 
-
-// Nota: Asumiendo que Carta.astro es un componente decorativo o el "sobre" de la invitación.
 ---
 
 <Layout title="Boda de Jonathan y Areli">
@@ -23,22 +20,18 @@ import CuentaRegresiva from '@components/CuentaRegresiva.astro';
 
             <div class="relative z-10 text-center px-4 text-boda-blanco-base drop-shadow-lg flex flex-col justify-center items-center">
                 <span class="block text-xl md:text-2xl mb-2 font-secondary-200 tracking-widest uppercase">Nuestra Boda</span>
-                
                 <div class="my-6 flex justify-center">
                     <Carta /> 
                 </div>
             </div>
         </section>
 
-        <section class="w-full py-20 px-6 bg-boda-blanco-base text-center">
+        <section id="seccion-padres" class="w-full py-20 px-6 bg-boda-blanco-base text-center">
             <div class="max-w-4xl mx-auto space-y-16">
-                
                 <h2 class="text-3xl md:text-4xl font-secondary-300 text-boda-verde-base mb-12">
                     Con la bendición de nuestros padres
                 </h2>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
-                    
                     <article class="flex flex-col items-center">
                         <div class="w-16 h-0.5 bg-boda-azul-base mb-6"></div>
                         <h3 class="text-xl font-secondary-300 text-boda-azul-base mb-4 uppercase tracking-widest">
@@ -51,7 +44,6 @@ import CuentaRegresiva from '@components/CuentaRegresiva.astro';
                             Cristian García Torres
                         </p>
                     </article>
-
                     <article class="flex flex-col items-center">
                         <div class="w-16 h-0.5 bg-boda-rojo-base mb-6"></div>
                         <h3 class="text-xl font-secondary-300 text-boda-rojo-base mb-4 uppercase tracking-widest">
@@ -65,7 +57,6 @@ import CuentaRegresiva from '@components/CuentaRegresiva.astro';
                         </p>
                     </article>
                 </div>
-
                 <div class="mt-16 pt-10 border-t border-gray-200">
                     <h3 class="text-xl font-secondary-300 text-boda-verde-base mb-6 uppercase tracking-widest">
                         Padrinos de Velación
@@ -81,28 +72,25 @@ import CuentaRegresiva from '@components/CuentaRegresiva.astro';
             </div>
         </section>
 
-        <section class="w-full py-24 px-6 bg-boda-verde-base text-boda-blanco-base text-center">
+        <section id="seccion-regalos" class="w-full py-24 px-6 bg-boda-verde-base text-boda-blanco-base text-center">
             <div class="max-w-2xl mx-auto flex flex-col items-center gap-6">
-                
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.8" stroke="currentColor" class="w-16 h-16 mb-2 text-boda-blanco-base opacity-80">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H4.5a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                 </svg>
-
                 <h2 class="text-4xl md:text-5xl font-secondary-300 mb-4">Regalos</h2>
-                
                 <div class="w-24 h-px bg-boda-blanco-base opacity-50"></div>
-
                 <p class="text-lg md:text-xl font-secondary-200 leading-relaxed italic opacity-90 max-w-lg">
                     "Su presencia es nuestro mejor regalo, pero si desean tener un detalle con nosotros, agradecemos infinitamente su cariño."
                 </p>
-
                 <div class="mt-6 border border-boda-blanco-base/30 rounded-full px-8 py-2 bg-boda-black/10 backdrop-blur-sm">
                     <p class="text-sm font-secondary-300 tracking-widest uppercase">Lluvia de Sobres</p>
                  </div>
             </div>
         </section>
 
-		<CuentaRegresiva />
+        <div id="seccion-final">
+            <CuentaRegresiva />
+        </div>
 
         <footer class="bg-boda-oscuro-base text-boda-blanco-base py-8 text-center">
             <p class="font-secondary-400 text-sm opacity-60">Jonathan & Areli — 2025</p>

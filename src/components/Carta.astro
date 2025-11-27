@@ -1,143 +1,100 @@
 ---
 // src/components/Carta.astro
+// ... (El HTML y CSS sigue igual, solo cambiamos el <script> al final)
 ---
 
 <style>
-    /* Animación personalizada para el latido */
+    /* ... tus estilos previos ... */
     @keyframes latido {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
     }
-    
-    .animate-latido {
-        animation: latido 1.5s infinite ease-in-out;
-    }
-
-    /* Clase para detener la animación al hacer click */
-    .stop-animation {
-        animation: none;
-    }
+    .animate-latido { animation: latido 1.5s infinite ease-in-out; }
+    .stop-animation { animation: none; }
 </style>
 
 <div class="w-full h-64 flex justify-center items-center perspective-[1000px]" >
-    
-    <div class="w-64 h-44 bg-boda-verde-base relative shadow-2xl rounded-sm overflow-visible transition-all duration-700" id="cuerpo-sobre">
-        
+   <div class="w-64 h-44 bg-boda-verde-base relative shadow-2xl rounded-sm overflow-visible transition-all duration-700" id="cuerpo-sobre">
         <div class="absolute inset-0 flex justify-center items-center z-10 opacity-0 transition-opacity duration-1000 delay-300" id="interior-sobre">
-            <div class="bg-white w-[90%] h-[90%] flex flex-col justify-center items-center p-2 text-center shadow-md rotate-0">
+             <div class="bg-white w-[90%] h-[90%] flex flex-col justify-center items-center p-2 text-center shadow-md rotate-0">
                  <p class="text-boda-verde-base text-xs font-bold uppercase tracking-widest mb-1">Invitación</p>
                  <p class="text-[8px] text-gray-500 mb-2">¡Nuestra boda!</p>
                  <div class="w-8 h-[1px] bg-boda-verde-base/30"></div>
             </div>
         </div>
+        <div id="solapa-l" class="absolute top-0 left-0 w-0 h-0 border-t-[88px] border-t-transparent border-b-[88px] border-b-transparent border-l-[110px] border-l-[#4e6047] origin-left transition-transform duration-1000 ease-in-out z-20 pointer-events-none"></div>
+        <div id="solapa-r" class="absolute top-0 right-0 w-0 h-0 border-t-[88px] border-t-transparent border-b-[88px] border-b-transparent border-r-[110px] border-r-[#4e6047] origin-right transition-transform duration-1000 ease-in-out z-20 pointer-events-none"></div>
+        <div id="solapa-b" class="absolute bottom-0 left-0 w-0 h-0 border-l-[128px] border-l-transparent border-r-[128px] border-r-transparent border-b-[95px] border-b-[#54684c] origin-bottom transition-transform duration-1000 ease-in-out z-20 pointer-events-none"></div>
+        <div id="solapa-t" class="absolute top-0 left-0 w-0 h-0 border-l-[128px] border-l-transparent border-r-[128px] border-r-transparent border-t-[95px] border-t-[#44553e] origin-top transition-transform duration-1000 ease-in-out z-30 pointer-events-none"></div>
 
-        <div
-            id="solapa-l" 
-            class="absolute top-0 left-0 w-0 h-0 
-            border-t-[88px] border-t-transparent 
-            border-b-[88px] border-b-transparent 
-            border-l-[110px] border-l-[#4e6047] 
-            origin-left transition-transform duration-1000 ease-in-out z-20 pointer-events-none">
-        </div>
-
-        <div
-            id="solapa-r" 
-            class="absolute top-0 right-0 w-0 h-0 
-            border-t-[88px] border-t-transparent 
-            border-b-[88px] border-b-transparent 
-            border-r-[110px] border-r-[#4e6047] 
-            origin-right transition-transform duration-1000 ease-in-out z-20 pointer-events-none">
-        </div>
-
-        <div 
-            id="solapa-b"
-            class="absolute bottom-0 left-0 w-0 h-0
-            border-l-[128px] border-l-transparent 
-            border-r-[128px] border-r-transparent 
-            border-b-[95px] border-b-[#54684c] 
-            origin-bottom transition-transform duration-1000 ease-in-out z-20 pointer-events-none"
-        >
-        </div>
-
-        <div 
-            id="solapa-t"
-            class="absolute top-0 left-0 w-0 h-0 
-            border-l-[128px] border-l-transparent 
-            border-r-[128px] border-r-transparent 
-            border-t-[95px] border-t-[#44553e]
-            origin-top transition-transform duration-1000 ease-in-out z-30 pointer-events-none"
-        >
-        </div>
-
-        <div 
-            id="sello"
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 cursor-pointer group"
-        >
+        <div id="sello" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 cursor-pointer group">
             <div id="sello-inner" class="bg-boda-azul-base rounded-full w-12 h-12 shadow-lg flex justify-center items-center animate-latido transition-all duration-500 group-hover:bg-boda-rojo-base">
                 <div class="w-9 h-9 rounded-full border border-boda-blanco-base/50 flex justify-center items-center">
                     <span class="text-[10px] text-boda-blanco-base font-bold">J&A</span>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <script is:inline>
+    // Referencias al DOM
     const sello = document.getElementById('sello');
     const selloInner = document.getElementById('sello-inner');
-    
-    // Solapas
     const solapaT = document.getElementById('solapa-t'); 
     const solapaB = document.getElementById('solapa-b'); 
     const solapaL = document.getElementById('solapa-l'); 
     const solapaR = document.getElementById('solapa-r'); 
-    
     const interior = document.getElementById('interior-sobre');
 
-    // --- CONFIGURACIÓN DE AUDIO ---
-    // Astro sirve la carpeta public en la raíz, por eso es /cancion_fondo.mp3
+    // Configuración de Audio
     const audioFondo = new Audio('/cancion_fondo.mp3');
-    audioFondo.loop = true; // Para que se repita si acaba
-    audioFondo.volume = 0.6; // Volumen al 60% para no asustar (opcional)
+    audioFondo.loop = true; 
+    audioFondo.volume = 0.6;
+
+    // Helper para hacer scroll suave
+    const scrollA = (id) => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
 
     if (sello && solapaT && solapaB && solapaL && solapaR) {
         sello.addEventListener('click', () => {
             
-            // 1. REPRODUCIR MÚSICA
-            // Los navegadores permiten reproducir audio si hay interacción del usuario (click)
-            audioFondo.play().catch(error => {
-                console.log("No se pudo reproducir el audio automáticamente:", error);
-            });
-
-            // 2. Detener latido y desaparecer sello
+            // 1. INICIAR AUDIO Y ANIMACIÓN
+            audioFondo.play().catch(e => console.log("Audio autoplay bloqueado:", e));
             selloInner.classList.add('stop-animation'); 
             sello.classList.add('opacity-0', 'scale-0', 'pointer-events-none', 'transition-all', 'duration-500');
 
-            // 3. Abrir todas las solapas
+            // 2. ABRIR EL SOBRE (200ms)
             setTimeout(() => {
-                // Arriba
                 solapaT.classList.add('-rotate-x-180'); 
-                // Abajo
                 solapaB.classList.add('rotate-x-180');
-                // Izquierda
                 solapaL.classList.add('-rotate-y-180');
-                // Derecha
                 solapaR.classList.add('rotate-y-180');
-
-                // Mostrar contenido
                 if(interior) interior.classList.remove('opacity-0');
             }, 200);
 
-            // 4. Scroll hacia abajo
+            // --- SECUENCIA DE SCROLL AUTOMÁTICO ---
+
+            // PASO A: Ir a Padres (1.2 segundos después del click)
             setTimeout(() => {
-                const siguienteSeccion = document.getElementById('seccion-padres');
-                if(siguienteSeccion) {
-                    siguienteSeccion.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-                }
-            }, 1200);
+                scrollA('seccion-padres');
+
+                // PASO B: Ir a Regalos (5 segundos después de llegar a Padres)
+                setTimeout(() => {
+                    scrollA('seccion-regalos');
+
+                    // PASO C: Ir al Final/Cuenta Regresiva (5 segundos después de Regalos)
+                    setTimeout(() => {
+                        scrollA('seccion-final');
+                    }, 5000); // 5000ms de lectura en Regalos
+
+                }, 5000); // 5000ms de lectura en Padres
+
+            }, 1200); // 1200ms para abrir el sobre
         });
     }
 </script>
