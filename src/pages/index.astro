@@ -16,8 +16,8 @@ import CuentaRegresiva from '@components/CuentaRegresiva.astro';
 import Itinerario from '@components/Itinerario.astro'; // <--- 1. IMPORTAR NUEVO COMPONENTE
 
 const idList = ['seccionCarta', 'seccion-novios', 'fotoNovios2', 
-                'seccion-padres', 'seccion-itinerario', 'cuenta-regresiva', 
-                'seccion-final'];
+                'seccion-padres', 'fotoNovios3', 'seccion-itinerario',
+                'cuenta-regresiva', 'seccion-final'];
 ---
 <Layout title="Boda de Jonathan y Areli">
     <main class="text-boda-oscuro-base overflow-x-hidden">
@@ -36,21 +36,23 @@ const idList = ['seccionCarta', 'seccion-novios', 'fotoNovios2',
         <!-- La seccion donde estan las dedicatorias -->
         <SeccionPadres id={idList[3]} />
         <!-- La seccion del itinerario de la boda -->
-        <div class="h-[50%] w-full relative">
-                <div class="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-boda-blanco-base to-transparent z-10"></div>
-                <Image src={fotoNovios3} alt="Los Novios" class="w-full h-full object-cover object-top opacity-70" />
-                <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-boda-blanco-base to-transparent z-10"></div>
+        <div
+            id={idList[4]} 
+            class="h-[50%] w-full relative">
+            <div class="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-boda-blanco-base to-transparent z-10"></div>
+            <Image src={fotoNovios3} alt="Los Novios" class="w-full h-full object-cover object-top opacity-70" />
+            <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-boda-blanco-base to-transparent z-10"></div>
         </div>
         <!-- La seccion del itinerario de la boda -->
-        <div id="seccion-itinerario">
+        <div id={idList[5]}>
             <Itinerario />
         </div>
         <!-- La seccion de la cuenta regresiva de la boda -->
-        <div id="cuenta-regresiva">
+        <div id={idList[6]}>
             <CuentaRegresiva />
         </div>
         <!-- Seccion con mensaje y dedicatorias -->
-        <section id="seccion-final" class="w-full py-24 px-6 bg-boda-verde-base text-boda-blanco-base text-center">
+        <section id={idList[7]} class="w-full py-24 px-6 bg-boda-verde-base text-boda-blanco-base text-center">
             <div class="max-w-2xl mx-auto flex flex-col items-center gap-6">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.8" stroke="currentColor" class="w-16 h-16 mb-2 text-boda-blanco-base opacity-80">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H4.5a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />

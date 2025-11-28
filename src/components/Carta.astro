@@ -81,26 +81,32 @@
             // PASO A: Ir a la nueva sección de NOVIOS/PLAYER
             setTimeout(() => {
                 scrollA('seccion-novios');
+
                 setTimeout(() => {
                     scrollA('fotoNovios2');
                     // PASO B: Ir a Padres (7 segundos para ver foto y probar el botón)
+
                     setTimeout(() => {
                         scrollA('seccion-padres');
+
                         setTimeout(() => {
-                            scrollA('cuenta-regresiva');
-                            // PASO C: Ir a Regalos (5 segundos)
+                            scrollA('fotoNovios3');
+                            // PASO C: Ir a Itinerario (7 segundos para ver foto y frase)
+
                             setTimeout(() => {
-                                scrollA('seccion-regalos');
+                                scrollA('seccion-itinerario');
 
-                                // PASO D: Ir al Final (5 segundos)
                                 setTimeout(() => {
-                                    scrollA('seccion-final');
-                                }, 7000); 
+                                    scrollA('cuenta-regresiva');
+                                    setTimeout(() => {
+                                        scrollA('seccion-final');
+                                    }, 4000);
 
-                            }, 5000); 
-                        }, 4000);    
-                    }, 3000); // Damos 7 segundos a la sección de novios para que aprecien la foto y la frase
-                }, 2000);
+                                }, 3500); // Damos 7 segundos a la sección del itinerario para que aprecien la info
+                            }, 4500);
+                        }, 4000);
+                    }, 3500); // Damos 7 segundos a la sección de novios para que aprecien la foto y la frase
+                }, 3000);
             }, 1200); 
         });
     }
