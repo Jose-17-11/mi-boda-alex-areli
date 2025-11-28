@@ -1,0 +1,51 @@
+---
+interface Props {
+    id?: string;
+}
+const { id } = Astro.props;
+---
+<section id={id} class="w-full py-20 bg-boda-blanco-base text-center">
+     <div class="max-w-4xl mx-auto space-y-16">
+        <h2 class="text-3xl md:text-4xl font-secondary-300 text-boda-verde-base mb-12">
+            Con la bendición de nuestros padres
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
+            <article class="flex flex-col items-center">
+                <div class="w-16 h-0.5 bg-boda-rojo-base mb-6"></div>
+                <h3 class="text-xl font-secondary-300 text-boda-rojo-base mb-4 uppercase tracking-widest">
+                    Padres de la Novia
+                </h3>
+                <p class="text-lg md:text-xl font-secondary-200 text-boda-oscuro-base">
+                    José Guadalupe Gómez Quiroz
+                </p>
+                <p class="text-lg md:text-xl font-secondary-200 text-boda-oscuro-base">
+                    Ma. de los Ángeles Mendoza Mendoza
+                </p>
+            </article>
+            <article class="flex flex-col items-center">
+                <div class="w-16 h-0.5 bg-boda-azul-base mb-6"></div>
+                <h3 class="text-xl font-secondary-300 text-boda-azul-base mb-4 uppercase tracking-widest">
+                    Padres del Novio
+                </h3>
+                <p class="text-lg md:text-xl font-secondary-200 text-boda-oscuro-base">
+                    Carlos González Gaytán
+                </p>
+                <p class="text-lg md:text-xl font-secondary-200 text-boda-oscuro-base">
+                    Cristian García Torres
+                </p>
+            </article>
+        </div>
+        <div class="mt-16 pt-10 border-t border-gray-200">
+            <h3 class="text-xl font-secondary-300 text-boda-verde-base mb-6 uppercase tracking-widest">
+                Padrinos de Velación
+            </h3>
+            <p class="text-xl md:text-2xl font-secondary-300 text-boda-oscuro-base">
+                Pedro Esteban Solis Solano
+            </p>
+            <span class="block text-lg font-secondary-100 my-1">&</span>
+            <p class="text-xl md:text-2xl font-secondary-300 text-boda-oscuro-base">
+                María de Lourdes Gómez Quiroz
+            </p>
+        </div>
+    </div>
+</section>

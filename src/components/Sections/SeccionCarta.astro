@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import fondoFlores from '@assets/fondos-para-invitaciones-de-bodas-con-flroes-2.png';
+import Carta from '@components/Carta.astro';
+
+interface Props {
+    id?: string;
+}
+const { id } = Astro.props;
+---
+<section 
+    id={id}
+    class="w-full h-screen relative flex items-center justify-center">
+    <div class="absolute inset-0 z-0">
+        <Image 
+            src={fondoFlores} 
+            alt="Fondo de flores" 
+            class="w-full h-full object-cover brightness-[0.60]" 
+        />
+    </div>
+    <div class="relative z-10 text-center px-4 text-boda-blanco-base drop-shadow-lg flex flex-col justify-center items-center">
+        <span class="block text-xl md:text-2xl mb-2 font-secondary-200 tracking-widest uppercase">Nuestra Boda</span>
+        <div class="my-6 flex justify-center">
+            <Carta /> 
+        </div>
+    </div>
+</section>
