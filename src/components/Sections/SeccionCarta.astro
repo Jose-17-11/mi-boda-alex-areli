@@ -8,43 +8,56 @@ interface Props {
 }
 const { id } = Astro.props;
 ---
+
 <style>
-    /* Definimos la animación de entrada */
+    /* 1. Animación para el contenido (Texto y Carta) */
     @keyframes slideInFromLeft {
         0% {
             opacity: 0;
-            transform: translateX(-100px); /* Empieza 100px a la izquierda */
+            transform: translateX(-50px); /* Reducido a 50px para ser más sutil */
         }
         100% {
             opacity: 1;
-            transform: translateX(0); /* Termina en su lugar original */
+            transform: translateX(0);
         }
     }
 
-    /* Clase utilitaria para aplicar la animación */
-    .animate-enter {
-        /* Nombre | Duración | Función de tiempo (suavizado) | Fill mode */
-        animation: slideInFromLeft 2.2s cubic-bezier(0.32, 1, 0.36, 1) forwards;
+    /* 2. Animación suave solo para la IMAGEN de fondo */
+    @keyframes fadeInImage {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
     }
 
-    /* Opcional: Un pequeño delay para que primero cargue el fondo y luego entre la carta */
+    .animate-enter {
+        opacity: 0; /* CLAVE: Empieza invisible para evitar el parpadeo inicial */
+        animation: slideInFromLeft 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .animate-bg {
+        animation: fadeInImage 1.2s ease-out forwards;
+    }
+
     .delay-300 {
         animation-delay: 0.3s;
-        opacity: 0; /* Importante: empezar invisible para respetar el delay */
     }
 </style>
+
 <section 
     id={id}
-    class="w-full h-screen relative flex items-center justify-center">
-    <div class="absolute inset-0 z-0">
+    class="w-full h-screen relative flex items-center justify-center overflow-hidden bg-boda-azul-base"> <div class="absolute inset-0 z-0">
         <Image 
             src={fondoFlores} 
             alt="Fondo de flores" 
-            class="w-full h-full object-cover brightness-[0.60]" 
+            class="w-full h-full object-cover brightness-[0.60] animate-bg"
+            loading="eager"
+            fetchpriority="high"
         />
     </div>
+
     <div class="relative z-10 text-center px-4 text-boda-blanco-base drop-shadow-lg flex flex-col justify-center items-center animate-enter delay-300">
-        <span class="block text-xl md:text-2xl mb-2 font-secondary-200 tracking-widest uppercase">Nuestra Boda</span>
+        <span class="block text-xl md:text-2xl mb-2 font-secondary-200 tracking-widest uppercase">
+            Nuestra Boda
+        </span>
         <div class="my-6 flex justify-center">
             <Carta /> 
         </div>
