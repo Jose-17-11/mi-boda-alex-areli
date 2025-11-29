@@ -16,6 +16,13 @@ const idList = ['seccionCarta', 'seccion-novios', 'fotoNovios2',
                 'seccion-padres', 'fotoNovios3', 'seccion-itinerario',
                 'cuenta-regresiva', 'seccion-final'];
 ---
+<style>
+    @keyframes latido {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+    }
+    .animate-latido { animation: latido 1.5s infinite ease-in-out; }
+</style>
 <Layout title="Boda de Jonathan y Areli">
     <main class="text-boda-oscuro-base overflow-x-hidden">
         <!-- Seccion de la carta -->
@@ -59,7 +66,7 @@ const idList = ['seccionCarta', 'seccion-novios', 'fotoNovios2',
                 <p class="text-lg md:text-xl font-secondary-200 leading-relaxed italic opacity-90 max-w-lg">
                     "Su presencia es nuestro mejor regalo, pero si desean tener un detalle con nosotros, agradecemos infinitamente."
                 </p>
-                <a href="/deseos" class="mt-6 border border-boda-blanco-base/30 rounded-full px-8 py-2 bg-boda-azul-base backdrop-blur-sm">
+                <a href="/deseos" class="mt-6 border border-boda-blanco-base/30 rounded-full px-8 py-2 bg-boda-azul-base backdrop-blur-sm animate-latido">
                     <p class="text-sm font-secondary-300 tracking-widest uppercase ">Deja un deseo</p>
                 </a>
             </div>
